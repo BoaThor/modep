@@ -6,7 +6,10 @@ Requires=pisound-btn.service
 [Service]
 LimitRTPRIO=infinity
 LimitMEMLOCK=infinity
-ExecStart=/usr/local/bin/jackd -v -t 2000 -s -d alsa -d hw:pisound -r 48000 -p 256 -n 2 -X seq
+
+#ExecStart=/usr/local/bin/jackd -v -t 2000 -s -d alsa -d hw:pisound -r 48000 -p 256 -n 2 -X seq
+# To give a better user-experience with less xruns (5min test = 0 xruns vs. old settings 5min test = 90)
+ExecStart=/usr/local/bin/jackd -v -t 2000 -s -d alsa -d hw:pisound -r 96000 -p 256 -n 3 -X seq
 
 [Install]
 WantedBy=multi-user.target
